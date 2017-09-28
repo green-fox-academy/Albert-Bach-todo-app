@@ -11,11 +11,20 @@ namespace ToDoApplication
         static void Main(string[] args)
         {
             Opening();
+            List_tasks list_Tasks = new List_tasks();
+
+
+            if (args[0] == "-l")
+            {
+                list_Tasks.Reader();
+            }
+
+
             Console.ReadLine();
         }
 
         public static void Opening()
-            {
+        {
             Console.WriteLine("Command Line Todo application\n" +
                 "=============================\n" +
                 "Command line arguments:\n" +
@@ -26,4 +35,4 @@ namespace ToDoApplication
         }
     }
 }
-             
+
