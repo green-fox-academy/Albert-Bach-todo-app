@@ -21,11 +21,25 @@ namespace ToDoApplication
 
 
             Console.ReadLine();
+
+            if (args[0] == "-a")
+            {
+                try
+                {
+                    list_Tasks.Adder(args[1]);
+                }
+                catch
+                {
+                    Console.WriteLine("Unable to add: no task provided");
+                }
+            }
+
         }
 
         public static void Opening()
         {
-            Console.WriteLine("Command Line Todo application\n" +
+            Console.WriteLine(
+                "Command Line Todo application\n" +
                 "=============================\n" +
                 "Command line arguments:\n" +
                 " -l Lists all the tasks\n" +

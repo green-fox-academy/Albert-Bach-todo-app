@@ -10,11 +10,11 @@ namespace ToDoApplication
     public class List_tasks
     {
         string path = @"./Datas.txt";
+        string[] content = new string[0];
 
         public string[] Reader()
         {
             string path = @"./Datas.txt";
-            string[] content = new string[0];
 
             try
             {
@@ -32,9 +32,31 @@ namespace ToDoApplication
             }
             catch (Exception)
             {
-                Console.WriteLine("Unable to read file the text file");
+                Console.WriteLine("Unable to read the text file");
             }
 
+            return content;
+        }
+        public string[] Adder(string NewTask)
+        {
+            try
+            {
+                if (NewTask.Equals(string.Empty))
+                {
+                    Console.WriteLine("Unable to add: no task provided");
+                }
+                else
+                {
+                    using (StreamWriter writer = File.AppendText(path+Environment.NewLine))
+                    {
+                        writer.WriteLine(NewTask);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Unable to write file:Datas.txt");
+            }
             return content;
         }
     }
