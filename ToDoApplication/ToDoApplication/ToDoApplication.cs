@@ -11,28 +11,37 @@ namespace ToDoApplication
         static void Main(string[] args)
         {
             Opening();
-            List_tasks list_Tasks = new List_tasks();
+            Listtask listTasks = new Listtask();
 
+            if (args.Length == 0)
+            {
+                Console.WriteLine("Unsupported argument");
+                Opening();
+                return;
+            }
 
             if (args[0] == "-l")
             {
-                list_Tasks.Reader();
+                listTasks.Reader();
             }
-
-
-            Console.ReadLine();
 
             if (args[0] == "-a")
             {
                 try
                 {
-                    list_Tasks.Adder(args[1]);
+                    listTasks.Adder(args[1]);
                 }
                 catch
                 {
                     Console.WriteLine("Unable to add: no task provided");
                 }
             }
+
+            if (args[0] == "-r")
+            {
+                listTasks.Remover(args[1]);
+            }
+
 
         }
 
@@ -49,4 +58,3 @@ namespace ToDoApplication
         }
     }
 }
-

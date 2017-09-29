@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace ToDoApplication
 {
-    public class List_tasks
+    public class Listtask
     {
-        string path = @"./Datas.txt";
+        string path = @"Datas.txt";
         string[] content = new string[0];
 
         public string[] Reader()
         {
-            string path = @"./Datas.txt";
+            string path = @"Datas.txt";
 
             try
             {
@@ -37,6 +37,7 @@ namespace ToDoApplication
 
             return content;
         }
+
         public string[] Adder(string NewTask)
         {
             try
@@ -47,7 +48,7 @@ namespace ToDoApplication
                 }
                 else
                 {
-                    using (StreamWriter writer = File.AppendText(path+Environment.NewLine))
+                    using (StreamWriter writer = File.AppendText(path))
                     {
                         writer.WriteLine(NewTask);
                     }
@@ -59,5 +60,31 @@ namespace ToDoApplication
             }
             return content;
         }
+
+        public string[] Remover(string remove)
+        {
+          List<string> list = new List<string>(File.ReadAllLines(path));
+            if (list.Count >= 2)
+            {
+                try
+                {
+                    list.RemoveAt(int.Parse(remove) - 1);
+                    File.WriteAllLines(path, list);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    Console.WriteLine("Unable to remove: index is out of bound");
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Unable to remove: index is not a number");
+                }
+
+            }
+           
+
+            return content;
+        }
+       
     }
 }
