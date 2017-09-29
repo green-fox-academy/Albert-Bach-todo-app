@@ -14,8 +14,6 @@ namespace ToDoApplication
 
         public string[] Reader()
         {
-            string path = @"Datas.txt";
-
             try
             {
                 content = File.ReadAllLines(path);
@@ -63,7 +61,7 @@ namespace ToDoApplication
 
         public string[] Remover(string remove)
         {
-          List<string> list = new List<string>(File.ReadAllLines(path));
+          var list = new List<string>(File.ReadAllLines(path));
             if (list.Count >= 2)
             {
                 try
@@ -85,6 +83,43 @@ namespace ToDoApplication
 
             return content;
         }
+
+        public string[] Checker(string index)
+        {
+            int done = int.Parse(index);
+
+            var list = new List<string>(File.ReadAllLines(path));
+
+
+            for (int i = 0; i <= list.Count; i++)
+            {
+                if (i == 1)
+                {
+                    try
+                    {
+                        string check = list[i];
+                        list[i] = "[X] " + check;
+                        File.WriteAllLines(path, list);
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        Console.WriteLine("Unable to remove: index is out of bound");
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Unable to remove: index is not a number");
+                    }
+                }
+                else
+                {
+                    string nocheck = list[i];
+                    list[i] = "[ ] " + nocheck;
+                    File.WriteAllLines(path, list);
+                }
+            }
+            return content;
+        }
+        
        
     }
 }

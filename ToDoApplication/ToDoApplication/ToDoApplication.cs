@@ -42,7 +42,10 @@ namespace ToDoApplication
                 listTasks.Remover(args[1]);
             }
 
-
+            if (args[0] =="-c")
+            {
+                listTasks.Checker(args[1]);
+            }
         }
 
         public static void Opening()
