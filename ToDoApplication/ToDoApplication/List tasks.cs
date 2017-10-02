@@ -78,9 +78,7 @@ namespace ToDoApplication
                     Console.WriteLine("Unable to remove: index is not a number");
                 }
 
-            }
-           
-
+            }      
             return content;
         }
 
